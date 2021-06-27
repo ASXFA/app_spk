@@ -1,0 +1,137 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">{{page}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{base_url}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">{{page}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Tentukan Kriteria yang dibutuhkan </h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post">
+                            <!-- <h4 class="card-title text-center mb-3">Tentukan Kriteria</h4> -->
+                            <div class="row">
+                                {% if kriteria %}
+                                {% set count=1 %}
+                                {% for item in kriteria %}
+                                <div class="col-md-3 mb-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label">{{item.nama_kriteria}}</label>
+                                        <input type="text" name="id_kriteria[]" value="{{item.id_kriteria}}" hidden
+                                            required>
+                                        <select name="id_subkriteria[]" class="form-control" required>
+                                            {% for items in subkriteria %}
+                                            {% if items.id_kriteria_sub == item.id_kriteria %}
+                                            <option value="{{items.id_subkriteria}}">{{items.nama_subkriteria}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 offset-lg-3 text-center">
+                                    <input type="text" value="proses" name="proses" hidden>
+                                    <button type="submit" class="btn btn-primary">Lakukan Penilaian</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Hasil Penilaian</h4>
+                        <br>
+                        <div class="row">
+                            {% for i in allKriteria %}
+                            <div class="col-md-3">
+                                <p><b>{{i.nama_kriteria}}</b> : {{i.nama_subkriteria}}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="table-selisih" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Santri</th>
+                                    <th>TTL</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Kelas</th>
+                                    <th>Total Nilai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if hasilRekomendasi is empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center">Data Tidak Ada</td>
+                                </tr>
+                                {% else %}
+                                {% set count = 1 %}
+                                {% set ranking = 0 %}
+                                {% for item in hasilRekomendasi %}
+                                <tr>
+                                    <td>{{count}}</td>
+                                    <td>{{item.nama_santri}}</td>
+                                    <td>{{item.ttl_santri|date('d F Y')}}</td>
+                                    <td>{{item.jk_santri}}</td>
+                                    <td>{{item.kelas_santri}}</td>
+                                    <td>{{item.total}}</td>
+                                </tr>
+                                {% set count = count + 1 %}
+                                {% endfor %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/. container-fluid -->
+</section>
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 &&
+            (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+</script>
+<script src="{{base_url}}assets/action/profil_matching.js"></script>
+{% endblock %}

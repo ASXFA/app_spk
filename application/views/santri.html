@@ -1,0 +1,118 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">{{page}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{base_url}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">{{page}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        {% if role_user_login == 2 %}
+                        <button class="btn btn-primary btm-sm float-right" id="btn-tambah-santri"><i
+                                class="fa fa-plus-circle"></i> Tambah Data</button>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <table id="table-santri" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>TTL</th>
+                                    <th>Umur</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Kelas</th>
+                                    <th>Dibuat Oleh</th>
+                                    <th width="10%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/. container-fluid -->
+</section>
+<!-- /.content -->
+
+<!-- Modal -->
+<div class="modal fade" id="modal-santri" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white font-weight-bold" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formSantri" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <lable class="form-control-label">Nama Santri</lable>
+                                <input type="text" id="nama_santri" name="nama_santri" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <lable class="form-control-label">Jenis Kelamin</lable>
+                                <select name="jk_santri" id="jk_santri" class="form-control">
+                                    <option>PILIH</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <lable class="form-control-label">Tempat Tanggal Lahir</lable>
+                                <input type="date" name="ttl_santri" id="ttl_santri" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <lable class="form-control-label">Kelas</lable>
+                                <input type="text" name="kelas_santri" id="kelas_santri" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" name="id_santri" id="id_santri" hidden>
+                    <input type="text" name="operation" id="operation" hidden>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <input type="submit" id="btnTambah" class="btn btn-primary text-white" value="">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/santri.js"></script>
+{% endblock %}

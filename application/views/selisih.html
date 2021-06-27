@@ -1,0 +1,110 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">{{page}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{base_url}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">{{page}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button class="btn btn-primary btm-sm float-right" id="btn-tambah-selisih"><i
+                                class="fa fa-plus-circle"></i> Tambah Data</button>
+                    </div>
+                    <div class="card-body">
+                        <table id="table-selisih" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nilai Selisih</th>
+                                    <th>Bobot Selisih</th>
+                                    <th>Keterangan Selisih</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/. container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Modal -->
+<div class="modal fade" id="modalSelisih" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white font-weight-bold" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formSelisih" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="" class="form-control-label">Nilai Selisih</label>
+                        <input type="number" name="nilai_selisih" id="nilai_selisih" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="form-control-label">Bobot Selisih</label>
+                        <input type="text" name="bobot_selisih" onkeypress="return isNumberKey(event)"
+                            id="bobot_selisih" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="form-control-label">Keterangan Selisih</label>
+                        <textarea name="keterangan_selisih" id="keterangan_selisih" cols="30" rows="5"
+                            style="resize:none" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" name="id_selisih" id="id_selisih" hidden>
+                    <input type="text" name="operation" id="operation" hidden>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <input type="submit" id="btnSelisih" class="btn btn-primary text-white" value="">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+{% endblock %}
+{% block js %}
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 &&
+            (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+</script>
+<script src="{{base_url}}assets/action/selisih.js"></script>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">{{page}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{base_url}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">{{page}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button class="btn btn-primary btm-sm float-right" id="btn-tambah-subkriteria"><i
+                                class="fa fa-plus-circle"></i> Tambah Data</button>
+                    </div>
+                    <div class="card-body">
+                        <table id="table-subkriteria" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Subkriteria </th>
+                                    <th>Nama Kriteria </th>
+                                    <th>Nilai Subkriteria</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/. container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Modal -->
+<div class="modal fade" id="modalSubkriteria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white font-weight-bold" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formSubkriteria" method="post">
+                <div class="modal-body">
+                    {% if kriteria|length == 0 %}
+                    <h5 class="text-center">Data Kriteria Belum Tersedia !</h5>
+                    {% else %}
+                    <div class="form-group">
+                        <lable class="form-control-label">Nama SubKriteria</lable>
+                        <input type="text" name="nama_subkriteria" id="nama_subkriteria" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <lable class="form-control-label">Kriteria</lable>
+                        <select name="id_kriteria_sub" id="id_kriteria_sub" class="form-control" required>
+                            <option value="0" hidden>PILIH</option>
+                            {% for item in kriteria %}
+                            <option value="{{item.id_kriteria}}">{{item.nama_kriteria}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <lable class="form-control-label">Nilai Bobot Subkriteria </lable>
+                        <input type="text" name="nilai_subkriteria" onkeypress="return isNumberKey(event)"
+                            id="nilai_subkriteria" class="form-control" required>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if kriteria|length != 0 %}
+                <div class="modal-footer">
+                    <input type="text" name="id_subkriteria" id="id_subkriteria" hidden>
+                    <input type="text" name="operation" id="operation" hidden>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <input type="submit" id="btnSubkriteria" class="btn btn-primary text-white" value="">
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+{% endblock %}
+{% block js %}
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 &&
+            (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+</script>
+<script src="{{base_url}}assets/action/subkriteria.js"></script>
+{% endblock %}

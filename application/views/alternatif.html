@@ -1,0 +1,91 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">{{page}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{base_url}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">{{page}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="formAlternatif" method="post">
+                            <input type="text" name="id_santri_alternatif" value="{{santri.id_santri}}" hidden>
+                            {% if alternatif|length == 0 %}
+                            <input type="text" name="operations" id="operations" value="Tambah" hidden>
+                            {% for item in kriteria %}
+                            <div class="form-group">
+                                <label for="" class="form-control-label">{{item.nama_kriteria}}</label>
+                                <input type="text" name="id_kriteria_alternatif[]" value="{{item.id_kriteria}}" hidden>
+                                <select name="id_subkriteria_alternatif[]" class="form-control">
+                                    {% for items in subkriteria %}
+                                    {% if items.id_kriteria_sub == item.id_kriteria %}
+                                    <option value="{{items.id_subkriteria}}">{{items.nama_subkriteria}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            <input type="text" name="operations" id="operations" value="Edit" hidden>
+                            {% for alt in alternatif %}
+                            {% for k in kriteria %}
+                            {% if k.id_kriteria == alt.id_kriteria_alternatif %}
+                            <div class="form-group">
+                                <label for="" class="form-control-label">{{k.nama_kriteria}}</label>
+                                <input type="text" name="id_kriteria_alternatif[]" value="{{k.id_kriteria}}" hidden>
+                                <select name="id_subkriteria_alternatif[]" class="form-control">
+                                    {% for sk in subkriteria %}
+                                    {% if sk.id_kriteria_sub == k.id_kriteria %}
+                                    {% if sk.id_subkriteria == alt.id_subkriteria_alternatif %}
+                                    <option value="{{sk.id_subkriteria}}" selected>{{sk.nama_subkriteria}}</option>
+                                    {% else %}
+                                    <option value="{{sk.id_subkriteria}}">{{sk.nama_subkriteria}}</option>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}
+                            {% endif %}
+                            <div class="form-group">
+                                <!-- <span><small> <i>*Samakan dengan Isian objek wisata sebelumnya</i> </small></span> -->
+                                <button type="submit"
+                                    class="btn btn-primary text-white float-right mt-3">Simpan</button>
+                                <a href="{{base_url}}listSantri"
+                                    class="btn btn-secondary float-right mt-3 mr-2">Kembali</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/alternatif.js"></script>
+{% endblock %}

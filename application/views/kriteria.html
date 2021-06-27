@@ -1,0 +1,104 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Kriteria</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{base_url}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Kriteria</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button class="btn btn-primary btm-sm float-right" id="btn-tambah-kriteria"><i
+                                class="fa fa-plus-circle"></i> Tambah Data</button>
+                    </div>
+                    <div class="card-body">
+                        <table id="table-kriteria" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Kriteria</th>
+                                    <th>Jenis Kriteria</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/. container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Modal -->
+<div class="modal fade" id="modalKriteria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white font-weight-bold" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formKriteria" method="post">
+                <div class="modal-body">
+                    {% if jenis|length == 0 %}
+                    <h5 class="text-center">Data Jenis Kriteria Belum Tersedia !</h5>
+                    {% else %}
+                    <div class="form-group">
+                        <lable class="form-control-label">Nama Kriteria</lable>
+                        <input type="text" name="nama_kriteria" id="nama_kriteria" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <lable class="form-control-label">Jenis Kriteria</lable>
+                        <select name="id_jenis" name="id_jenis" id="id_jenis" class="form-control" required>
+                            <option value="0" disabled>PILIH</option>
+                            {% for item in jenis %}
+                            <option value="{{item.id_jenis}}">{{item.nama_jenis}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if jenis|length != 0 %}
+                <div class="modal-footer">
+                    <input type="text" name="id_kriteria" id="id_kriteria" hidden>
+                    <input type="text" name="operation" id="operation" hidden>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <input type="submit" id="btnKriteria" class="btn btn-primary text-white" value="">
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/kriteria.js"></script>
+{% endblock %}

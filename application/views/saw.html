@@ -1,0 +1,128 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">{{page}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{base_url}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">{{page}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mt-2">
+                            Data Santri & Bobot SAW
+                        </h4>
+                        <span class="d-block">
+                            <button class="btn btn-primary float-right" id="btn-hitung-sekarang">Hitung
+                                Sekarang</button>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table id="table-santri-bobot" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Santri</th>
+                                            <th>TTL</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Kelas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% set count = 1 %}
+                                        {% for s in santri %}
+                                        <tr>
+                                            <td>{{count}}</td>
+                                            <td>{{s.nama_santri}}</td>
+                                            <td>{{s.ttl_santri}}</td>
+                                            <td>{{s.jk_santri}}</td>
+                                            <td>{{s.kelas_santri}}</td>
+                                        </tr>
+                                        {% set count = count + 1 %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table id="table-bobot-saw" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Kriteria</th>
+                                            <th>Nilai Bobot</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% set count = 1 %}
+                                        {% for b in bobot %}
+                                        <tr>
+                                            <td>{{count}}</td>
+                                            <td>{{b.nama_kriteria}}</td>
+                                            <td>{{b.nilai_bobot_saw}}</td>
+                                        </tr>
+                                        {% set count = count + 1 %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Hasil Penilaian SAW</h4>
+                    </div>
+                    <div class="card-body">
+                        <table id="table-hasil-saw" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Santri</th>
+                                    <th>TTL</th>
+                                    <th>Umur</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Kelas</th>
+                                    <th>Nilai SAW</th>
+                                    <th>Ranking</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/. container-fluid -->
+</section>
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/saw.js"></script>
+{% endblock %}

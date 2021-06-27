@@ -1,0 +1,212 @@
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-dark">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="{{base_url}}assets/#" role="button"><i
+                    class="fas fa-bars"></i></a>
+        </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="far fa-user mr-2"></i> {{nama_user_login}}
+                <i class="fas fa-angle-down right ml-3"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <!-- <span class="dropdown-item dropdown-header">{{nama_user_login}}</span>
+                {% if role_user_login == 1 %}
+                <span class="dropdown-item dropdown-header">Bag. Keguruan</span>
+                {% elseif role_user_login == 2 %}
+                <span class="dropdown-item dropdown-header">Bag. Pengelolaan Santri</span>
+                {% endif %} -->
+                <div class="dropdown-divider"></div>
+                <a href="{{base_url}}editProfil" class="dropdown-item">
+                    <i class="fas fa-cogs mr-2"></i> Pengaturan Akun
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="{{base_url}}logout" class="dropdown-item">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Keluar
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<!-- /.navbar -->
+
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{{base_url}}" class="brand-link">
+        <!-- <img src="{{base_url}}assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+            class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+        <h4 class="brand-text font-weight-bold text-center">Aplikasi SPK</h4>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <!-- <div class="image">
+                <img src="{{base_url}}assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
+                    alt="User Image">
+            </div> -->
+            <div class="info">
+                <a class="d-block font-weight-bold">{{nama_user_login|upper}}</a>
+                {% if role_user_login == 1 %}
+                <a>Bag. Keguruan</a>
+                {% elseif role_user_login == 2 %}
+                <a>Bag. Pengelolaan Santri</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu"
+                data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a href="{{base_url}}" class="nav-link" id="dashboard-page">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <!-- <li class="nav-item menu-open">
+                    <a href="{{base_url}}assets/#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{base_url}}assets/./index.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard v1</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{base_url}}assets/./index2.html" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard v2</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{base_url}}assets/./index3.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard v3</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> -->
+                <!-- <li class="nav-item">
+                    <a href="{{base_url}}assets/pages/widgets.html" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Widgets
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li> -->
+                <li class="nav-item" id="main-sidebar">
+                    <a href="{{base_url}}assets/#" class="nav-link" id="main-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Main
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        {% if role_user_login == 1 %}
+                        <li class="nav-item">
+                            <a href="{{base_url}}listSantri" class="nav-link" id="santri-page">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Alternatif / Santri</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{base_url}}listJenis" class="nav-link" id="jenis-page">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Jenis Kriteria</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{base_url}}listKriteria" class="nav-link" id="kriteria-page">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kriteria</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{base_url}}listSubkriteria" class="nav-link" id="subkriteria-page">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sub Kritera</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{base_url}}listSelisih" class="nav-link" id="selisih-page">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Selisih</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{base_url}}listBobot" class="nav-link" id="bobot-saw-page">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Bobot SAW</p>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a href="{{base_url}}listSantri" class="nav-link" id="santri-page">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Alternatif / Santri</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% if role_user_login == 1 %}
+                <li class="nav-item">
+                    <a href="{{base_url}}listUsers" class="nav-link" id="users-page">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Pengguna
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item" id="penilaian-sidebar">
+                    <a href="{{base_url}}assets/#" class="nav-link" id="penilaian-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>
+                            Penilaian
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{base_url}}listMatching" class="nav-link" id="matching-page">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Profile Matching</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{base_url}}listSaw" class="nav-link" id="saw-page">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>SAW</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

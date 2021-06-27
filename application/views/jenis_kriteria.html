@@ -1,0 +1,108 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">{{page}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{base_url}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">{{page}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    {% if allData < 2 %}
+                    <div class="card-header">
+                        <button class="btn btn-primary btm-sm float-right" id="btn-tambah-jenis"><i
+                                class="fa fa-plus-circle"></i> Tambah Data</button>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <table id="table-jenis-kriteria" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Jenis Kriteria</th>
+                                    <th>Bobot</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/. container-fluid -->
+</section>
+<!-- modal -->
+<div class="modal fade" id="modal-jenis-kriteria">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="title-jenis"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formJenis" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <lable class="form-control-label">Nama Jenis Kriteria</lable>
+                        <input type="text" name="nama_jenis" id="nama_jenis" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <lable class="form-control-label">Nilai Jenis Kriteria</lable>
+                        <input type="text" name="nilai_jenis" onkeypress="return isNumberKey(event)" id="nilai_jenis"
+                            class="form-control">
+                    </div>
+                    <small>* Pastikan nilai kriteria tidak lebih dari sama dengan 1 </small>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" name="id_jenis" id="id_jenis" hidden>
+                    <input type="text" name="operation" id="operation" hidden>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <input type="submit" id="btnJenis" class="btn btn-primary" value="">
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/jenisKriteria.js"></script>
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 &&
+            (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+</script>
+{% endblock %}

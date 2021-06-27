@@ -1,0 +1,130 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0" style="font-size: 35px">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>{{users}}</h3>
+
+                        <p>User</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <a href="{{base_url}}listUsers" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>{{santri}}</h3>
+
+                        <p>Santri</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user-alt"></i>
+                    </div>
+                    <a href="{{base_url}}listSantri" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{kriteria}}</h3>
+
+                        <p>Kriteria</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-th-list"></i>
+                    </div>
+                    <a href="{{base_url}}listKriteria" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-navy">
+                    <div class="inner">
+                        <h3>{{subkriteria}}</h3>
+
+                        <p>Subkriteria</p>
+                    </div>
+                    <div class="icon">
+                        <i class="text-white fas fa-list-ol"></i>
+                    </div>
+                    <a href="{{base_url}}listSubriteria" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-orange">
+                    <div class="inner">
+                        <h3>{{jenis_kriteria}}</h3>
+
+                        <p>Jenis Kriteria</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-list-ol"></i>
+                    </div>
+                    <a href="{{base_url}}listJenis" class="small-box-footer"> More info <i
+                            class=" fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-teal">
+                    <div class="inner">
+                        <h3>{{selisih}}</h3>
+
+                        <p>Selisih</p>
+                    </div>
+                    <div class="icon">
+                        <i class="text-white fas fa-list-ol"></i>
+                    </div>
+                    <a href="{{base_url}}listSelisih" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!--/. container-fluid -->
+</section>
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/dashboard.js"></script>
+{% endblock %}

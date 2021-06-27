@@ -1,0 +1,128 @@
+{% extends "template/layout.html" %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">{{page}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{base_url}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">{{page}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h3 class="card-title d-inline">Profil</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="formEditProfil" action="" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <lable class="form-control-label">Username</lable>
+                                        <input type="text" id="uname" value="{{user.uname_users}}" class="form-control"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <lable class="form-control-label">Jenis Kelamin</lable>
+                                        <select name="jk" id="jk" class="form-control">
+                                            {% if user.jk_users == 'Laki-Laki' %}
+                                            <option value="Laki-Laki" selected>Laki-Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                            {% else %}
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Perempuan" selected>Perempuan</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <lable class="form-control-label">Nama</lable>
+                                        <input type="text" id="nama" value="{{user.nama_users}}" class="form-control"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <lable class="form-control-label">Hp</lable>
+                                        <input type="text" id="hp" maxlength="12" value="{{user.hp_users}}"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary text-white btn-sm float-right" id="saveProfil"><i
+                                        class="fa fa-save"></i> Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h3 class="card-title d-inline">Ganti Password</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="formEditPassword" method="post">
+                            <div class="form-group">
+                                <label for="password_lama" class="form-control-label">Password Lama</label>
+                                <div class="input-group">
+                                    <input type="password" id="pass_lama" class="form-control " required>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-secondary btn-flat" id="btn_lama"><i
+                                                class="fas fa-eye-slash"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password_baru" class="form-control-label">Password Baru</label>
+                                <div class="input-group">
+                                    <input type="password" id="pass_baru" class="form-control" required>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-secondary btn-flat" id="btn_baru"><i
+                                                class="fas fa-eye-slash"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="konfirmasi_password" class="form-control-label">Konfirmasi Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="conf_pass" class="form-control" required>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-secondary btn-flat" id="btn_conf"><i
+                                                class="fas fa-eye-slash"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary text-white btn-sm float-right" id="savePassword"><i
+                                        class="fa fa-save"></i> Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/editProfil.js"></script>
+{% endblock %}
