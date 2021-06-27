@@ -126,7 +126,10 @@ class Santri extends CI_Controller
 
     public function deleteSantri()
     {
+        $this->load->model('model_alternatif');
         $id = $this->input->post('id');
+        $santri = $this->model_santri->getById($id);
+        $this->model_alternatif->deleteAlternatif($santri->id_santri);
         $process = $this->model_santri->deleteSantri($id);
         echo json_encode($process);
     }
