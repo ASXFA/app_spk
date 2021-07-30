@@ -24,22 +24,6 @@
         <div class="row">
             <div class="col-lg-3 col-6">
                 <!-- small card -->
-                <div class="small-box bg-primary">
-                    <div class="inner">
-                        <h3>{{users}}</h3>
-
-                        <p>User</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <a href="{{base_url}}listUsers" class="small-box-footer">
-                        More info <i class="fas fa-arrow-circle-right"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6">
-                <!-- small card -->
                 <div class="small-box bg-warning">
                     <div class="inner">
                         <h3>{{santri}}</h3>
@@ -50,6 +34,23 @@
                         <i class="fas fa-user-alt"></i>
                     </div>
                     <a href="{{base_url}}listSantri" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            {% if role_user_login == 1 %}
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>{{users}}</h3>
+
+                        <p>User</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <a href="{{base_url}}listUsers" class="small-box-footer">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -95,7 +96,7 @@
                         <p>Jenis Kriteria</p>
                     </div>
                     <div class="icon">
-                        <i class="fas fa-list-ol"></i>
+                        <i class="fas fa-list-ul"></i>
                     </div>
                     <a href="{{base_url}}listJenis" class="small-box-footer"> More info <i
                             class=" fas fa-arrow-circle-right"></i>
@@ -111,13 +112,14 @@
                         <p>Selisih</p>
                     </div>
                     <div class="icon">
-                        <i class="text-white fas fa-list-ol"></i>
+                        <i class="text-white fas fa-list-alt"></i>
                     </div>
                     <a href="{{base_url}}listSelisih" class="small-box-footer">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
             </div>
+            {% endif %}
         </div>
         <!-- /.row -->
     </div>

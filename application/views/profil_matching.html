@@ -89,6 +89,7 @@
                                     <th>Jenis Kelamin</th>
                                     <th>Kelas</th>
                                     <th>Total Nilai</th>
+                                    <th>Ranking</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -107,6 +108,7 @@
                                     <td>{{item.jk_santri}}</td>
                                     <td>{{item.kelas_santri}}</td>
                                     <td>{{item.total}}</td>
+                                    <td>Ranking - {{count}}</td>
                                 </tr>
                                 {% set count = count + 1 %}
                                 {% endfor %}
